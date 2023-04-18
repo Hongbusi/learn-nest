@@ -7,9 +7,10 @@ export class CatsService {
 
   create(cat: Cat) {
     this.cats.push(cat)
+    return 'Created.'
   }
 
-  findAll(): Cat[] {
-    return this.cats
+  findAll({ page }): Cat[] {
+    return this.cats.slice(page, page + 1)
   }
 }
