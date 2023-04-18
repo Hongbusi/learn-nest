@@ -1,5 +1,5 @@
 import { Global, Module } from '@nestjs/common'
-import { CatsController } from './cats.controller'
+import CatsController from './cats.controller'
 import { CatsService } from './cats.service'
 
 @Global()

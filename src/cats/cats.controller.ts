@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
-import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common'
+import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query, UseGuards, UseInterceptors } from '@nestjs/common'
 import { RolesGuard } from '../common/guards/roles.guard'
 import { Role } from '../enums/role.enum'
+import { LoggingInterceptor } from '../common/interceptor/logging.interceptor'
 import type { CreateCatDto } from './dto/create-cat-dto'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { CatsService } from './cats.service'
@@ -10,7 +11,8 @@ import { ValidationPipe } from './validation.pipe'
 import { Roles } from './roles.decorator'
 
 @Controller('cats')
-export class CatsController {
+@UseInterceptors(LoggingInterceptor)
+export default class CatsController {
   constructor(private catsService: CatsService) {}
   @Post()
   @Roles(Role.Admin)
