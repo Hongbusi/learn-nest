@@ -1,5 +1,6 @@
 import { Controller, Get } from '@nestjs/common'
-import type { AppService } from './app.service'
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+import { AppService } from './app.service'
 
 @Controller()
 export class AppController {
