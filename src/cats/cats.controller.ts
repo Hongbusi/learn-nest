@@ -1,15 +1,20 @@
 /* eslint-disable no-console */
-import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query } from '@nestjs/common'
+import { Body, Controller, DefaultValuePipe, Get, HttpStatus, Param, ParseIntPipe, Post, Query, UseGuards } from '@nestjs/common'
+import { RolesGuard } from '../common/guards/roles.guard'
+import { Role } from '../enums/role.enum'
 import type { CreateCatDto } from './dto/create-cat-dto'
 // eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { CatsService } from './cats.service'
 import type { Cat } from './interfaces/cat.interface'
 import { ValidationPipe } from './validation.pipe'
+import { Roles } from './roles.decorator'
 
 @Controller('cats')
 export class CatsController {
   constructor(private catsService: CatsService) {}
   @Post()
+  @Roles(Role.Admin)
+  @UseGuards(RolesGuard)
   async create(@Body(new ValidationPipe()) createCatDto: CreateCatDto) {
     return this.catsService.create(createCatDto)
   }
