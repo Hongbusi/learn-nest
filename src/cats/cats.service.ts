@@ -10,7 +10,7 @@ export class CatsService {
     return 'Created.'
   }
 
-  findAll({ page }): Cat[] {
-    return this.cats.slice(page, page + 1)
+  findAll(): Cat[] {
+    return this.cats
   }
 }

@@ -23,7 +23,8 @@ export default class CatsController {
 
   @Get()
   async findAll(@Query('page', new DefaultValuePipe(0), ParseIntPipe) page: number): Promise<Cat[]> {
-    return this.catsService.findAll({ page })
+    console.log(page)
+    return this.catsService.findAll()
   }
 
   @Get(':id')
