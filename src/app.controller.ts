@@ -1,5 +1,4 @@
 import { Controller, Get, Query, Redirect } from '@nestjs/common'
-// eslint-disable-next-line @typescript-eslint/consistent-type-imports
 import { AppService } from './app.service'
 
 @Controller()
