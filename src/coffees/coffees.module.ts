@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Module, Scope } from '@nestjs/common'
 import { TypeOrmModule } from '@nestjs/typeorm'
 import { Connection } from 'typeorm'
 import { CoffeesController } from './coffees.controller'
@@ -28,6 +28,7 @@ class ProductionConfigService {}
         return coffeeBrands
       },
       inject: [Connection],
+      scope: Scope.TRANSIENT,
     }],
   exports: [CoffeesService],
 })
