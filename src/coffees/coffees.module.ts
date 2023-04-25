@@ -7,13 +7,17 @@ import { CoffeesService } from './coffees.service'
 import { Coffee } from './entities/coffee.entity'
 import { Flavor } from './entities/flavor.entity'
 import { COFFEE_BRANDS } from './coffees.constants'
+import coffeesConfig from './config/coffees.config'
 
 class ConfigService {}
 class DevelopmentConfigService {}
 class ProductionConfigService {}
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event]), ConfigModule],
+  imports: [
+    TypeOrmModule.forFeature([Coffee, Flavor, Event]),
+    ConfigModule.forFeature(coffeesConfig),
+  ],
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
