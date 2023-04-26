@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
+import { generateDocument } from './docs'
 
 declare const module: any
 
@@ -16,6 +17,9 @@ async function bootstrap() {
       },
     }),
   )
+
+  generateDocument(app)
+
   await app.listen(3000)
 
   if (module.hot) {
