@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
-import { generateDocument } from './docs'
+import { setupSwagger } from './swagger'
 
 declare const module: any
 
@@ -18,7 +18,10 @@ async function bootstrap() {
     }),
   )
 
-  generateDocument(app)
+  const enableSwagger = process.env.ENABLE_DOCUMENTATION !== 'false'
+
+  if (enableSwagger)
+    setupSwagger(app)
 
   await app.listen(3000)
 
