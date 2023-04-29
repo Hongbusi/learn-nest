@@ -3,6 +3,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
 import { setupSwagger } from './swagger'
 import { HttpExceptionFilter } from './common/filters/http-exception/http-exception.filter'
+import { ApiKeyGuard } from './common/guards/api-key/api-key.guard'
 
 declare const module: any
 
@@ -19,6 +20,7 @@ async function bootstrap() {
     }),
   )
   app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalGuards(new ApiKeyGuard())
 
   const enableSwagger = process.env.ENABLE_DOCUMENTATION !== 'false'
 
