@@ -3,6 +3,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { AppModule } from './app.module'
 import { setupSwagger } from './swagger'
 import { HttpExceptionFilter } from './common/filters/http-exception/http-exception.filter'
+import { WrapResponseInterceptor } from './common/interceptors/wrap-response/wrap-response.interceptor'
 
 declare const module: any
 
@@ -19,6 +20,7 @@ async function bootstrap() {
     }),
   )
   app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalInterceptors(new WrapResponseInterceptor())
 
   const enableSwagger = process.env.ENABLE_DOCUMENTATION !== 'false'
 
