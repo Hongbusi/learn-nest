@@ -10,3 +10,12 @@ services:
       database: postgres
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+  test-db:
+    image: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      database: postgres
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
