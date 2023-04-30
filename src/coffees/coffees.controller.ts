@@ -12,6 +12,7 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common'
+import { ApiForbiddenResponse } from '@nestjs/swagger'
 import { Public } from '../common/decorators/public.decorator'
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto'
 import { ParseIntPipe } from '../common/pipes/parse-int/parse-int.pipe'
@@ -27,6 +28,7 @@ export class CoffeesController {
     console.log('CoffeesController created')
   }
 
+  @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
   async findAll(@Protocol('https') protocol: string, @Query() paginationQuery: PaginationQueryDto) {
