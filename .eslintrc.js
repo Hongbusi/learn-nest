@@ -15,5 +15,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/consistent-type-imports': 'off',
     'no-console': 'off',
+    '@antfu/top-level-function': 'off',
   },
 };
