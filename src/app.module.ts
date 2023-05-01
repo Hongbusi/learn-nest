@@ -8,6 +8,7 @@ import { CoffeesModule } from './coffees/coffees.module'
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module'
 import { DatabaseModule } from './database/database.module'
 import { CommonModule } from './common/common.module'
+import { UsersModule } from './users/users.module';
 import appConfig from './config/app.config'
 
 @Module({
@@ -36,6 +37,7 @@ import appConfig from './config/app.config'
     CoffeeRatingModule,
     DatabaseModule,
     CommonModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
