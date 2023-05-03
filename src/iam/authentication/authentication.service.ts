@@ -6,6 +6,7 @@ import { ConfigType } from '@nestjs/config'
 import { User } from '../../users/entities/user.entity'
 import { HashingService } from '../hashing/hashing.service'
 import jwtConfig from '../../config/jwt.config'
+import { ActiveUserData } from '../interfaces/active-user-data.interface'
 import { SignUpDto } from './dto/sign-up.dto'
 import { SignInDto } from './dto/sign-in.dto'
 
@@ -53,7 +54,7 @@ export class AuthenticationService {
       {
         sub: user.id,
         email: user.email,
-      },
+      } as ActiveUserData,
       {
         secret: this.jwtConfiguration.secret,
         audience: this.jwtConfiguration.audience,

@@ -13,10 +13,12 @@ import {
   ValidationPipe,
 } from '@nestjs/common'
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger'
+import { ActiveUser } from '../iam/decorators/active-user.decorator'
 import { Public } from '../common/decorators/public.decorator'
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto'
 import { ParseIntPipe } from '../common/pipes/parse-int/parse-int.pipe'
 import { Protocol } from '../common/decorators/protocol.decorator'
+import { ActiveUserData } from '../iam/interfaces/active-user-data.interface'
 import { CoffeesService } from './coffees.service'
 import { CreateCoffeeDto } from './dto/create-coffee.dto'
 import { UpdateCoffeeDto } from './dto/update-coffee.dto'
@@ -32,9 +34,9 @@ export class CoffeesController {
   @ApiForbiddenResponse({ description: 'Forbidden.' })
   @Public()
   @Get()
-  async findAll(@Protocol('https') protocol: string, @Query() paginationQuery: PaginationQueryDto) {
-    console.log(protocol)
-    await new Promise(resolve => setTimeout(resolve, 5000))
+  async findAll(@ActiveUser() user: ActiveUserData, @Protocol('https') protocol: string, @Query() paginationQuery: PaginationQueryDto) {
+    console.log(user, protocol)
+    // await new Promise(resolve => setTimeout(resolve, 5000))
     return this.coffeesService.findAll(paginationQuery)
   }
 
