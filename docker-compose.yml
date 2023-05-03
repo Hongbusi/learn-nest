@@ -19,3 +19,8 @@ services:
       database: postgres
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
+  redis:
+    image: redis
+    restart: always
+    ports:
+      - 6379:6379

@@ -11,6 +11,7 @@ import { AuthenticationController } from './authentication/authentication.contro
 import { AuthenticationService } from './authentication/authentication.service'
 import { AuthenticationGuard } from './authentication/guards/authentication.guard'
 import { AccessTokenGuard } from './authentication/guards/access-token.guard'
+import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.storage'
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { AccessTokenGuard } from './authentication/guards/access-token.guard'
       useClass: AuthenticationGuard,
     },
     AccessTokenGuard,
+    RefreshTokenIdsStorage,
     AuthenticationService,
   ],
   controllers: [AuthenticationController],
