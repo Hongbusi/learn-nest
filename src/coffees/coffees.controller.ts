@@ -13,6 +13,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common'
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger'
+import { Role } from '../users/enums/role.enum'
+import { Roles } from '../iam/authorization/decorators/roles.decorator'
 import { ActiveUser } from '../iam/decorators/active-user.decorator'
 import { Public } from '../common/decorators/public.decorator'
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto'
@@ -51,11 +53,13 @@ export class CoffeesController {
     return this.coffeesService.create(createCoffeeDto)
   }
 
+  @Roles(Role.Admin)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto)
   }
 
+  @Roles(Role.Admin)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.coffeesService.remove(id)
