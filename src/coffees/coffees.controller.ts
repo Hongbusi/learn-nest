@@ -13,8 +13,8 @@ import {
   ValidationPipe,
 } from '@nestjs/common'
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger'
-import { Permissions } from '../iam/authorization/decorators/permissions.decorator'
-import { Permission } from '../iam/authorization/permission.type'
+import { Policies } from '../iam/authorization/decorators/policies.decorator'
+import { FrameworkContributorPolicy } from '../iam/authorization/policies/framework-contributor.policy'
 import { Role } from '../users/enums/role.enum'
 import { Roles } from '../iam/authorization/decorators/roles.decorator'
 import { ActiveUser } from '../iam/decorators/active-user.decorator'
@@ -55,8 +55,9 @@ export class CoffeesController {
     return this.coffeesService.create(createCoffeeDto)
   }
 
-  @Roles(Role.Admin)
-  @Permissions(Permission.CreateCoffee)
+  // @Roles(Role.Admin)
+  // @Permissions(Permission.CreateCoffee)
+  @Policies(new FrameworkContributorPolicy())
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return this.coffeesService.update(id, updateCoffeeDto)
