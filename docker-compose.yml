@@ -1,26 +1,13 @@
 version: '3'
 
 services:
-  db:
-    image: postgres
+  mysql:
+    image: mysql
     restart: always
     ports:
-      - 5432:5432
+      - '${DB_PORT}:${DB_PORT}'
     environment:
-      database: postgres
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-  test-db:
-    image: postgres
-    restart: always
-    ports:
-      - 5433:5432
-    environment:
-      database: postgres
-      POSTGRES_USER: root
-      POSTGRES_PASSWORD: root
-  redis:
-    image: redis
-    restart: always
-    ports:
-      - 6379:6379
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+    env_file:
+      - .env
