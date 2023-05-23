@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, ForbiddenException, Injectable, Type } from '@nestjs/common'
 import { Reflector } from '@nestjs/core'
-import { REQUEST_USER_KEY } from 'src/iam/iam.constants'
+import { REQUEST_USER_KEY } from '../../../iam/iam.constants'
 import { ActiveUserData } from '../../interfaces/active-user-data.interface'
 import { Policy } from '../policies/interfaces/policy.interface'
 import { POLICIES_KEY } from '../decorators/policies.decorator'
