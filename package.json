@@ -21,16 +21,25 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.4.1",
+    "@nestjs/config": "^2.3.2",
     "@nestjs/core": "^9.4.1",
+    "@nestjs/jwt": "^10.0.3",
+    "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^9.4.1",
+    "@nestjs/typeorm": "^9.0.1",
+    "bcrypt": "^5.1.0",
+    "joi": "^17.9.2",
+    "mysql2": "^3.3.2",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "typeorm": "^0.3.16"
   },
   "devDependencies": {
     "@antfu/eslint-config-react": "^0.39.1",
     "@nestjs/cli": "^9.5.0",
     "@nestjs/schematics": "^9.2.0",
     "@nestjs/testing": "^9.4.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.17",
     "@types/jest": "^29.5.1",
     "@types/node": "^18.16.14",
