@@ -5,7 +5,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { Repository } from 'typeorm'
 import { User } from '../users/entities/user.entity'
 import jwtConfig from '../config/jwt.config'
-import { ActiveUserData } from '../constants'
+import { ActiveUserData } from './interfaces/active-user-data.interface'
 import { HashingService } from './hashing.service'
 import { SignInDto } from './dto/sign-in.dto'
 import { SignUpDto } from './dto/sign-up.dto'
@@ -51,15 +51,11 @@ export class AuthService {
   }
 
   async generateTokens(user: User) {
-    const token = await this.signToken<Partial<ActiveUserData>>(
-      user.id,
-      3600,
-      { name: user.name },
-    )
+    const token = await this.signToken<Partial<ActiveUserData>>(user.id, { name: user.name })
     return { token }
   }
 
-  private async signToken<T>(userId: number, expiresIn: number, payload?: T) {
+  private async signToken<T>(userId: number, payload?: T) {
     return await this.jwtService.signAsync(
       {
         sub: userId,

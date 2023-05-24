@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param } from '@nestjs/common'
+import { Controller, Get } from '@nestjs/common'
 import { UsersService } from './users.service'
 
 @Controller('users')
@@ -8,10 +8,5 @@ export class UsersController {
   @Get()
   findAll() {
     return this.usersService.findAll()
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id)
   }
 }

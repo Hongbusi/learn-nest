@@ -13,12 +13,4 @@ export class UsersService {
   findAll(): Promise<User[]> {
     return this.userRepository.find()
   }
-
-  findOne(name: string): Promise<User | null> {
-    return this.userRepository.findOne({ where: { name } })
-  }
-
-  remove(id: number) {
-    return this.userRepository.delete(id)
-  }
 }
